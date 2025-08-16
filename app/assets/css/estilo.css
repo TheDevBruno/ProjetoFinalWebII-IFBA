@@ -1,0 +1,34 @@
+.lista_foto{
+    width: 70px;
+    height: 70px;
+    border-radius: 80px;
+}
+.mostra_foto {
+    width: 250px;
+}
+.view_confirma_cadastro{
+    display: grid;
+    justify-content: center;
+    gap: 16px;
+    justify-items: stretch;
+    margin-top: 16px;
+}
+.row_confirma_cadastro{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.mostrar_cadasto{
+    display: flex;
+    margin-bottom: 16px;
+    align-items: center;
+}
+
+.multi-card{
+    margin: 16px;
+    gap: 16px;
+}
+.card-box{
+    display: inline-flex;
+
+}
