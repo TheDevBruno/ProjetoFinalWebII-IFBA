@@ -1,4 +1,7 @@
-<?php include __DIR__ . '/../controllers/validar-login.php'; ?>
+<?php 
+    session_start();
+    include "controllers/validar.php"; 
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

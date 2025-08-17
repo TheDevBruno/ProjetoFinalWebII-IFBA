@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    include "controllers/validar.php"; 
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -77,7 +81,7 @@
                             </tr>"; 
                         }
                     ?>
-                    <a href="../public/index.php"     class="btn btn-info">Voltar para o inicio</a>  
+                    <a href="../public/home.php"     class="btn btn-info">Voltar para o inicio</a>  
                     <a href="../public/cadastroPessoas.php"  class="btn btn-primary">Cadastrar Pessoa</a>
                 </tbody>
             </table>
