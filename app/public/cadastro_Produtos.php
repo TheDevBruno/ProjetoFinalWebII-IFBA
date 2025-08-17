@@ -24,7 +24,7 @@
                         <input type="text" class="form-control" name="produto" required>
                     </div>
                     <div class="form-group">
-                        <label for="descricao">Descricão</label>
+                        <label for="descricao">Descrição</label>
                         <input type="text" class="form-control" name="descricao">
                     </div>
                     <div class="form-group">

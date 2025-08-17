@@ -26,14 +26,22 @@
                         $estoque = $_POST['estoque'];
                         $status = $_POST['status'];
                         $imagem = $_FILES['imagem'];
+                        $imagem_nome = basename($imagem['name']);
+                        $imagem_destino = "../assets/img/produtos/" . $imagem_nome;
 
+                        // Move uploaded file
+                        if (move_uploaded_file($imagem['tmp_name'], $imagem_destino)) {
+                            // File uploaded successfully
+                        } else {
+                            $imagem_nome = ""; // Or handle upload error
+                        }
 
                        $sqlInsert = "INSERT INTO `produtos`(`produto`, `descricao`, `preco`, `estoque`, `status`, `imagem`)
-                                        VALUES ('$produto','$descricao','$preco','$estoque','$status', '$imagem')";
+                                        VALUES ('$produto','$descricao','$preco','$estoque','$status', '$imagem_nome')";
 
                         if(mysqli_query($conn , $sqlInsert)){
-                            if ($imagem != null){
-                                echo "<img src='../assets/img/produtos/$imagem' title='$imagem' class='mostra_foto foto_produto'>";
+                            if (!empty($imagem_nome)){
+                                echo "<img src='../assets/img/produtos/$imagem_nome' title='$imagem_nome' class='mostra_foto foto_produto'>";
                             }
                             mensagem("$produto cadastrado com sucesso!", 'success');
                         }else

@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group">
                         <label for="estoque">Quantidade Estoque</label>
-                        <input type="email" class="form-control" name="estoque" required value= <?php echo $linha['estoque']; ?>>
+                        <input type="number" class="form-control" name="estoque" required value= <?php echo $linha['estoque']; ?>>
                     </div>
                     <div class="form-group">
                         <label for="data_cadastro">Data de Cadastro</label>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-success">
-                        <input type="hidden" name="id" value="<?php echo $linha['cod_pessoa'] ?>">                        
+                        <input type="hidden" name="id" value="<?php echo $linha['cod_produto'] ?>">                        
                         <a href="../includes/ListaProdutos.php" class="btn btn-primary">Voltar</a>  
                     </div>
                 </form>

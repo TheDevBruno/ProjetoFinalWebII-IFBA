@@ -39,29 +39,31 @@
                             $senha = $_POST['senha'];
 
                             include "config/conexao.php";
-                            $sql = "SELECT * FROM usuarios WHERE login = '$login' AND senha = '$senha'";
+                            $stmt = $conn->prepare("SELECT * FROM usuarios WHERE login = ? AND senha = ?");
+                            $stmt->bind_param("ss", $login, $senha);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
 
-                            if($result = mysqli_query($conn, $sql)){
-                                $num_registros = mysqli_num_rows($result);
-                                if ($num_registros == 1){
-                                    $linha = mysqli_fetch_assoc($result);
-
+                            if ($result) {
+                                $num_registros = $result->num_rows;
+                                if ($num_registros == 1) {
+                                    $linha = $result->fetch_assoc();
 
                                     if (($login == $linha['login']) and ($senha == $linha['senha'])) {
                                         session_start();
                                         $_SESSION['user'] = "Bruno";
                                         header("location: public/home.php");
-                                        } else {
-                                            echo "Login invalido!";
-                                        }
                                     } else {
-                                        echo "Login ou senha não encontrados ou invalido.";
+                                        echo "Login invalido!";
                                     }
-                                } else { 
-                                    echo "Nenhum resultado no Banco de Dados.";
+                                } else {
+                                    echo "Login ou senha não encontrados ou invalido.";
                                 }
+                            } else { 
+                                echo "Nenhum resultado no Banco de Dados.";
                             }
-                        
+                            $stmt->close();
+                        }
                     ?>
 
 
