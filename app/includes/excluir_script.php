@@ -1,6 +1,7 @@
 <?php 
     session_start();
     include "controllers/validar.php"; 
+    $usuario = $_COOKIE['usuario'] ?? 'Visitante';
 ?>
 
 <!DOCTYPE html>
@@ -16,19 +17,19 @@
 <body>
     <div class="container mt-5">
         <div class="row">
+
             <?php
+                include '../config/conexao.php';
+                $id = $_POST['id'];
+                $nome = $_POST['nome'];
 
-            include '../config/conexao.php';
-            $id = $_POST['id'];
-            $nome = $_POST['nome'];
+                $sqlDelete = "DELETE FROM `pessoas` where cod_pessoa = $id";
 
-            $sqlDelete = "DELETE FROM `pessoas` where cod_pessoa = $id";
-
-            if(mysqli_query($conn , $sqlDelete)){
-                mensagem("$nome cadastrado excluido com sucesso!", 'success');
-            }else
-                mensagem("$nome NÃO excluido!", 'danger');
-            
+                if(mysqli_query($conn , $sqlDelete)){
+                    mensagem("$nome cadastrado excluido com sucesso!", 'success');
+                }else{
+                    mensagem("$nome NÃO excluido!", 'danger');
+                }
             ?>
             
             <a href="ListaPessoas.php" class="btn btn-primary">Voltar</a>

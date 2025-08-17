@@ -1,6 +1,7 @@
 <?php 
     session_start();
-    include "controllers/validar.php"; 
+    //include "controllers/validar.php"; 
+    $usuario = $_COOKIE['usuario'] ?? 'Visitante';
 ?>
 
 <!DOCTYPE html>
@@ -14,43 +15,38 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <div class="container mt-5 view_confirma_cadastro">
-        <div class="row_confirma_cadastro" >
-            <div class="mostrar_cadasto">
-                <?php
-                    include '../config/conexao.php';
+    <div class="row_confirma_cadastro" >
+        <div class="mostrar_cadasto">
+            <?php
+                include '../config/conexao.php';
 
-                        $produto = $_POST['produto'];
-                        $descricao = $_POST['descricao'];
-                        $preco = $_POST['preco'];
-                        $estoque = $_POST['estoque'];
-                        $status = $_POST['status'];
-                        $imagem = $_FILES['imagem'];
-                        $imagem_nome = basename($imagem['name']);
-                        $imagem_destino = "../assets/img/produtos/" . $imagem_nome;
+                    $produto = $_POST['produto'];
+                    $descricao = $_POST['descricao'];
+                    $preco = $_POST['preco'];
+                    $estoque = $_POST['estoque'];
+                    $status = $_POST['status'];
+                    $imagem = $_FILES['imagem'];
+                    $imagem_nome = basename($imagem['name']);
+                    $imagem_destino = "../assets/img/produtos/" . $imagem_nome;
+                    if (move_uploaded_file($imagem['tmp_name'], $imagem_destino)) {
+                    } else {
+                        $imagem_nome = "";
+                    }
 
-                        // Move uploaded file
-                        if (move_uploaded_file($imagem['tmp_name'], $imagem_destino)) {
-                            // File uploaded successfully
-                        } else {
-                            $imagem_nome = ""; // Or handle upload error
+                    $sqlInsert = "INSERT INTO `produtos`(`produto`, `descricao`, `preco`, `estoque`, `status`, `imagem`)
+                                    VALUES ('$produto','$descricao','$preco','$estoque','$status', '$imagem_nome')";
+
+                    if(mysqli_query($conn , $sqlInsert)){
+                        if (!empty($imagem_nome)){
+                            echo "<img src='../assets/img/produtos/$imagem_nome' title='$imagem_nome' class='mostra_foto foto_produto'>";
                         }
-
-                       $sqlInsert = "INSERT INTO `produtos`(`produto`, `descricao`, `preco`, `estoque`, `status`, `imagem`)
-                                        VALUES ('$produto','$descricao','$preco','$estoque','$status', '$imagem_nome')";
-
-                        if(mysqli_query($conn , $sqlInsert)){
-                            if (!empty($imagem_nome)){
-                                echo "<img src='../assets/img/produtos/$imagem_nome' title='$imagem_nome' class='mostra_foto foto_produto'>";
-                            }
-                            mensagem("$produto cadastrado com sucesso!", 'success');
-                        }else
-                            mensagem("$produto NÃO foi cadastrado!", 'danger');
-                        
-                ?>
-            </div>
-        <a href="../includes/ListaProdutos.php" class="btn btn-primary">Voltar</a>
+                        mensagem("$produto cadastrado com sucesso!", 'success');
+                    }else{
+                        mensagem("$produto NÃO foi cadastrado!", 'danger');   
+                    }
+            ?>
         </div>
+        <a href="../includes/ListaProdutos.php" class="btn btn-primary">Voltar</a>
     </div>
     <!-- Scripts do Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

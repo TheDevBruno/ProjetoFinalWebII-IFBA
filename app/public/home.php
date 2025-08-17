@@ -1,6 +1,7 @@
-<?php 
+<?php
     session_start();
-    include "controllers/validar.php"; 
+    include "../controllers/validar.php";
+    $usuario = $_COOKIE['usuario'] ?? 'Visitante';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,22 +15,20 @@
 <body>
     <div class="container mt-5">
         <div class="row justify-content-center">
+            
+            <div class="mb-3 text-end">
+                <span>Bem-vindo, <?php echo htmlspecialchars($usuario); ?>!</span>
+                <a href="../login.php" class="btn btn-outline-success">Login</a>
+                <a href="../controllers/Logout.php" class="btn btn-outline-danger">Sair</a>
+            </div>  
+            
             <div class="col-md-10">
-
-                <!-- Botão de logout/login -->
-                <div class="mb-3 text-end">
-                    <a href="../login.php" class="btn btn-outline-success">Login</a>
-                    <a href="../controllers/Logout.php" class="btn btn-outline-danger">Sair</a>
-                </div>
-
-                <!-- Card principal -->
                 <div class="card text-center">
                     <h1 class="card-header">Sistema Web</h1>
                     <div class="card-body">
                         <h5 class="card-title">Sistema de Cadastro</h5>
                         <p class="card-text">Projeto desenvolvido como base de estudo para a disciplina de Informática | Web II.</p>
-                        
-                        <!-- Seção de Clientes -->
+
                         <div class="row mt-4">
                             <div class="col-md-6">
                                 <div class="card p-3">
@@ -39,7 +38,6 @@
                                 </div>
                             </div>
 
-                            <!-- Seção de Produtos -->
                             <div class="col-md-6">
                                 <div class="card p-3">
                                     <h4 class="card-title">Produtos</h4>
@@ -50,7 +48,6 @@
                         </div>
                     </div>
 
-                    <!-- Rodapé -->
                     <div class="card-footer text-body-secondary">
                         Sistema criado por @BrunoSilva
                     </div>

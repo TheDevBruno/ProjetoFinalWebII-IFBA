@@ -1,6 +1,7 @@
 <?php 
     session_start();
     include "controllers/validar.php"; 
+    $usuario = $_COOKIE['usuario'] ?? 'Visitante';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,26 +17,23 @@
     <div class="container mt-5">
         <div class="row">
             <?php
+                include '../config/conexao.php';
+                $id = $_POST['id'];
+                $nome = $_POST['nome'];
+                $endereco = $_POST['endereco'];
+                $telefone = $_POST['telefone'];
+                $email = $_POST['email'];
+                $data_nascimento = $_POST['data_nascimento'];
 
-            include '../config/conexao.php';
-            $id = $_POST['id'];
-            $nome = $_POST['nome'];
-            $endereco = $_POST['endereco'];
-            $telefone = $_POST['telefone'];
-            $email = $_POST['email'];
-            $data_nascimento = $_POST['data_nascimento'];
+                $sqlUpdate = "UPDATE `pessoas` set `nome` = '$nome', `endereco` = '$endereco', `telefone` = '$telefone', 
+                                        `email` = '$email', `data_nascimento` = '$data_nascimento' where cod_pessoa = $id";
 
-
-            $sqlUpdate = "UPDATE `pessoas` set `nome` = '$nome', `endereco` = '$endereco', `telefone` = '$telefone', 
-                                    `email` = '$email', `data_nascimento` = '$data_nascimento' where cod_pessoa = $id";
-
-            if(mysqli_query($conn , $sqlUpdate)){
-                mensagem("$nome cadastrado alterado com sucesso!", 'success');
-            }else
-                mensagem("$nome NÃO foi alterado!", 'danger');
-            
+                if(mysqli_query($conn , $sqlUpdate)){
+                    mensagem("$nome cadastrado alterado com sucesso!", 'success');
+                }else{
+                    mensagem("$nome NÃO foi alterado!", 'danger');                
+                }
             ?>
-            
             <a href="../includes/ListaPessoas.php" class="btn btn-primary">Voltar</a>
         </div>
     </div>

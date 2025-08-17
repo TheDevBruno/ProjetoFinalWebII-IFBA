@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -51,8 +50,10 @@
 
                                     if (($login == $linha['login']) and ($senha == $linha['senha'])) {
                                         session_start();
-                                        $_SESSION['user'] = "Bruno";
+                                        $_SESSION['user'] = $login;
+                                        setcookie("usuario", $login, time() + 3600, "/");
                                         header("location: public/home.php");
+                                        exit();
                                     } else {
                                         echo "Login invalido!";
                                     }
@@ -65,11 +66,6 @@
                             $stmt->close();
                         }
                     ?>
-
-
-
-
-                    <!--footer-->
                     <div class="card-footer text-body-secondary text-center">
                         Sistema criado por @BrunoSilva
                     </div>

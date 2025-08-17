@@ -1,6 +1,8 @@
 <?php 
     session_start();
     include "controllers/validar.php"; 
+    $usuario = $_COOKIE['usuario'] ?? 'Visitante';
+
 ?>
 
 <!DOCTYPE html>
@@ -14,12 +16,12 @@
     <title>Cadastro</title>
 </head>
 <body>
+    
     <div class="container mt-5 view_confirma_cadastro">
         <div class="row_confirma_cadastro" >
             <div class="mostrar_cadasto">
                 <?php
                     include '../config/conexao.php';
-
                         $nome = $_POST['nome'];
                         $endereco = $_POST['endereco'];
                         $telefone = $_POST['telefone'];

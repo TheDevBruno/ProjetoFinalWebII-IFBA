@@ -1,6 +1,7 @@
-<?php 
+<?php
     session_start();
-    include "controllers/validar.php"; 
+    //include "../controllers/validar.php";
+    $usuario = $_COOKIE['usuario'] ?? 'Visitante';
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +28,11 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col">
+            <div class="mb-3 text-end">
+                <span>Bem-vindo, <?php echo htmlspecialchars($usuario); ?>!</span>
+                <a href="../login.php" class="btn btn-outline-success">Login</a>
+                <a href="../controllers/Logout.php" class="btn btn-outline-danger">Sair</a>
+            </div>          
             <h1 class="text-center">Pesquisar Cliente</h1>
             <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
