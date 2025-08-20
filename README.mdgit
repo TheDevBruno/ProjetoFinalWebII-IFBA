@@ -46,8 +46,13 @@ Link da Playlist principal > http://youtube.com/watch?v=ecD45s8CUZE&list=PL4Q2E-
    - Senha: root
    - Acesso: Arquivo encontra-se em PROJETO/app/database/empresa.sql
 
+## Acesso ao Login sistema php:
+   - usuario: admin
+   - senha: admin
+
 O Projeto encontra-se em contrução, será adicionada funcionalidades como:
 - Idenditifacção do usuario logado nas paginas navegadas;
 - Criação do carrinho de compras e checkout;
+
 
 
