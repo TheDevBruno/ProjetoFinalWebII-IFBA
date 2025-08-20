@@ -8,7 +8,8 @@ Link da Playlist principal > http://youtube.com/watch?v=ecD45s8CUZE&list=PL4Q2E-
 ## Como configurar o projeto
 
 1. **Banco de dados**:
-   - Io banco de dados encontrasse em: `database/empresa.sql`.
+   - Io banco de dados encontrasse em: `database/empresa.sql`;
+   - Usuario: 
 
 2. **Configurar a conexão**:
    -  `app/config/conexao.php`.
@@ -35,8 +36,18 @@ Link da Playlist principal > http://youtube.com/watch?v=ecD45s8CUZE&list=PL4Q2E-
 - HTML/CSS/JavaScript
 - Estrutura MVC básica
 
+## Banco de dados:
+- Tabelas:
+   - pessoas
+   - produtos
+   - usuarios
+- acesso:
+   - User: Root
+   - Senha: root
+   - Acesso: Arquivo encontra-se em PROJETO/app/database/empresa.sql
 
 O Projeto encontra-se em contrução, será adicionada funcionalidades como:
 - Idenditifacção do usuario logado nas paginas navegadas;
 - Criação do carrinho de compras e checkout;
+
 
