@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16/08/2025 às 21:16
+-- Tempo de geração: 20/08/2025 às 18:26
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -37,14 +37,6 @@ CREATE TABLE `pessoas` (
   `foto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Despejando dados para a tabela `pessoas`
---
-
-INSERT INTO `pessoas` (`cod_pessoa`, `nome`, `endereco`, `telefone`, `email`, `data_nascimento`, `foto`) VALUES
-(47, 'Nicolas Pereira da Silva', 'Rua do Cruzeiro', '73 9999-8888', 'nicolinhas@gmail.com', '2018-08-23', '20250809040856jpeg'),
-(62, '', '', '', '', '0000-00-00', '');
-
 -- --------------------------------------------------------
 
 --
@@ -72,6 +64,27 @@ INSERT INTO `produtos` (`id_produto`, `produto`, `descricao`, `preco`, `estoque`
 (2, 'Processador Ryzen 7 9800', 'Ryzen 7 9800 processador 4.2ghz', 1500.00, 5, 'Array', '', '2025-08-16 18:24:15', '2025-08-16 18:24:15'),
 (3, 'Processador Ryzen 7 9800', 'Ryzen 7 9800 processador 4.2ghz', 1500.00, 5, 'Array', '', '2025-08-16 18:25:07', '2025-08-16 18:25:07');
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `senha` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `nome`, `login`, `senha`) VALUES
+(2, 'Bruno Silva', 'bruno', 'e3928a3bc4be46516aa33a79bbdfdb08'),
+(3, 'Larissa Pereira', 'admin', 'admin');
+
 --
 -- Índices para tabelas despejadas
 --
@@ -89,6 +102,14 @@ ALTER TABLE `produtos`
   ADD PRIMARY KEY (`id_produto`);
 
 --
+-- Índices de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `login` (`login`),
+  ADD UNIQUE KEY `id_usuario` (`id_usuario`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -103,6 +124,12 @@ ALTER TABLE `pessoas`
 --
 ALTER TABLE `produtos`
   MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
